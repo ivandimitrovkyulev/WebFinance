@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="">
+    {% if user.is_authenticated %}
+        <h1>Manage Account</h1>
+
+        {% if not user_email_is_verified %}
+            <br>Thank you for signing up, please verify your email.
+        {% elif not perms %}
+            <br>Your account needs to be approved.
+        {% endif %}
+
+        <br>
+        <ul>
+            <li><a href="{% url 'account_email' %}">Email addresses</a></li>
+            <li><a href="{% url 'account_change_password' %}">Change password</a></li>
+        </ul>
+    {% else %}
+        <h1>Welcome to Web Finance</h1>
+    {% endif %}
+</div>
+{% endblock content %}
